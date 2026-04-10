@@ -1,0 +1,49 @@
+h1 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+}
+
+.content{
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding-left: 2rem;
+
+}
+
+#pot {
+  overflow:hidden;
+  position: relative;
+}
+
+.box{
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  margin-top: 35px;
+  border-style: solid;
+  border-color: black;
+  width: auto;
+  box-shadow: 10px 10px 10px 10px black
+}
+
+
+
+#pot img{
+  position: relative;
+  animation: run 2s linear infinite;
+}
+
+@keyframes run {
+  0% {
+    left: 0%;
+    transform: translateX(-100%)
+  }
+  100% {
+    left: 100%;
+  }
+}
