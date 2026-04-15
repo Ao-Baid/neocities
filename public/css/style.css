@@ -1,49 +1,77 @@
-h1 {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
+* {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  color: white;
 }
 
-.content{
+body {
+    background-color: #1a1a2e;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.03) 2px,
+    rgba(255, 255, 255, 0.03) 4px
+  );
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  image-rendering: crisp-edges;
+}
 
-  text-align: center;
+div, section, article, main, header, footer, nav, ul, li, p, h1, h2, h3 {
+  background-color: transparent;
+}
+
+body > *:not(#snowCanvas):not(#snowToggleBtn) {
+  position: relative;
+  z-index: 2;
+}
+
+.layout {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  padding-left: 2rem;
-
+  gap: 16px;
+  background-color: transparent;
 }
 
-#pot {
-  overflow:hidden;
+.layout ul {
+  padding: 30px;
+  background-color: transparent;
+}
+
+.grow1 { 
+  flex-grow: 1;
+  background-color: transparent;
+}
+
+.main-content {
+  text-align: center;
+  flex:auto;
+}
+
+.loop{
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  overflow: hidden; 
   position: relative;
 }
 
-.box{
-  display: flex;
-  justify-content: center;
-  width: 10%;
-  margin-top: 35px;
-  border-style: solid;
-  border-color: black;
-  width: auto;
-  box-shadow: 10px 10px 10px 10px black
+.kageaki{
+    width: 200px;
+    animation: slideAcross 5s linear infinite;
 }
 
-
-
-#pot img{
-  position: relative;
-  animation: run 2s linear infinite;
+.kageaki--delayed {
+    animation-delay: -2.5s; /* exactly half the duration */
 }
 
-@keyframes run {
+@keyframes slideAcross {
   0% {
-    left: 0%;
-    transform: translateX(-100%)
+    transform: translateX(-100px);
   }
   100% {
-    left: 100%;
+    transform: translateX(100vw);
   }
 }

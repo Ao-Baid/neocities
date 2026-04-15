@@ -1,38 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">  
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The web site of grequiem</title>
-    <!-- The style.css file allows you to change the look of your web pages.
-         If you include the next line in all your web pages, they will all share the same look.
-         This makes it easier to make new pages for your site. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <link rel="stylesheet" href="style.css">
+    <title>GreQuiem · </title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/snow-style.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   </head>
   <body>
+    <div class="page-wrapper">
+      <div class="layout">
+        
+        <aside class="sidebar">
+          <h1><a href="/" class="site-title">GreQuiem</a></h1>
+          <nav aria-label="Main navigation">
+            <ul>
+              <li><a href="/" class="nav-link" data-page="home">Home</a></li>
+              <li><a href="/about/" class="nav-link" data-page="about">About</a></li>
+              <li><a href="/journal/" class="nav-link" data-page="journal">Journal</a></li>
+              <li><a href="/projects/" class="nav-link" data-page="projects">Projects</a></li>
+            </ul>
+          </nav>
+          
+          <div class="social-links">
+            <h3>Socials</h3>
+            <ul>
+              <li><a href="https://anilist.co/user/GreQuiem/" target="_blank" rel="noopener noreferrer">Anilist</a></li>
+              <li><a href="https://steamcommunity.com/id/gre_Q/" target="_blank" rel="noopener noreferrer">Steam</a></li>
+              <li><a href="https://x.com/gre_quiem" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <main class="main-content">
+            <h1>Welcome Welcome Welcome</h1>
+            <P>This is mainly just for me to brush up on my web skills and maybe ramble on about many things. </P>
+            <div class="loop">
+                  <img class="kageaki" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRs2ZL5rbpvd7RpcJ8rpNp-TMNTpX0KEyTrg&s">
+                  <img class="kageaki kageaki--delayed" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRs2ZL5rbpvd7RpcJ8rpNp-TMNTpX0KEyTrg&s" />
+            </div>
+        </main>
+
+      </div>  
+    </div>  
+
     
-    <div class="header">
-      <h1> Welcome to peak</h1>
-    </div>
+    <button id="snowToggleBtn" aria-label="Toggle snow effect">❄️ Snow ON</button>
+    <canvas id="snowCanvas" aria-hidden="true"></canvas>
     
-    <div id="pot">
-      <img src="https://s4.anilist.co/file/anilistcdn/character/large/b144080-QpC736hwC1nv.png">
-    </div>
     
-    <div class="box">
-      <div class="content">
-        <p><iframe width="200" height="200" autoplay="1" src="https://www.youtube.com/embed/mMbGxgh4HXw?controls=0&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-        <p> Check out my <a href="https://anilist.co/user/GreQuiem/">AniList</a></p>
-        <p> MY <a href="https://letterboxd.com/GreQuiem/">LETTERBOXD</a></P>
-        <p> and my <a href="https://vndb.org/u194345/ulist?vnlist=1">VNDB</a></p>
-      </div>
-    </div>
-    
-    <div class="box">
-      <div class="content">
-        <p><a href="https://twitter.com/gre_quiem">Twitter</a> | Discord: grequiem | <a href="https://steamcommunity.com/id/gre_Q/"> Steam </a></p>
-      </div>
-    </div>
+    <script src="js/snowEffect.js"></script>
   </body>
 </html>
