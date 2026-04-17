@@ -17,6 +17,7 @@
     let mouseXPercent = 0.5;
 
     let mouseInside = true;
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
     let viewportWidth = 0;
     let viewportHeight = 0;
@@ -136,9 +137,12 @@
         animateSnow();
         if (btn) btn.textContent = 'Snow Off';
 
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseleave', onMouseLeave);
-        window.addEventListener('mouseenter', onMouseEnter);
+        if(!isTouchDevice) {
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseleave', onMouseLeave);
+            window.addEventListener('mouseenter', onMouseEnter);
+        }
+        
         
 
     }
@@ -154,9 +158,12 @@
         canvas.style.display = 'none';
         if (btn) btn.textContent = '❄️ Snow ON';
 
-        window.removeEventListener('mousemove', onMouseMove);
-        window.removeEventListener('mouseleave', onMouseLeave);
-        window.removeEventListener('mouseenter', onMouseEnter);
+        if(!isTouchDevice){
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseleave', onMouseLeave);
+            window.removeEventListener('mouseenter', onMouseEnter);
+        }
+        
 
         currentWind = 0;
         targetWind = 0;
