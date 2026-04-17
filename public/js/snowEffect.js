@@ -21,51 +21,44 @@
     let viewportWidth = 0;
     let viewportHeight = 0;
 
-    function getViewportSize() {
-        const vv = window.visualViewport;
-        if (vv) {
-            return { width: vv.width, height: vv.height };
-        }
-        return { width: window.innerWidth, height: window.innerHeight };
-    }
 
     function resizeCanvas() {
-        const { width, height } = getViewportSize();
+        const vv = window.visualViewport;
+        const width  = vv ? vv.width  : window.innerWidth;
+        const height = vv ? vv.height : window.innerHeight;
         const dpr = window.devicePixelRatio || 1;
-        const ctx = canvas.getContext('2d');
 
-        viewportWidth = width;
+        viewportWidth  = width;
         viewportHeight = height;
 
-        // CSS display size = visible viewport
         canvas.style.width  = `${width}px`;
         canvas.style.height = `${height}px`;
-
-        // Canvas buffer = visible viewport × device pixel ratio
         canvas.width  = Math.round(width  * dpr);
         canvas.height = Math.round(height * dpr);
 
-        // Drawing stays in CSS pixels (no stretching on Retina)
+        const ctx = canvas.getContext('2d');
         if (ctx) {
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             ctx.imageSmoothingEnabled = false;
         }
+
+        initSnow(); // called AFTER viewportWidth/Height are set
     }
 
     function initSnow() {
         snowflakes = [];
-        for (let i = 0; i < SNOW_COUNT; i++)
-        {
+        const count = typeof SNOW_COUNT !== 'undefined' ? SNOW_COUNT : 80;
+        for (let i = 0; i < count; i++) {
             snowflakes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
+                x: Math.random() * viewportWidth,   // uses the ACTUAL current viewport
+                y: Math.random() * viewportHeight,  
                 speed: BASE_SPEED + Math.random() * 1.5,
                 size: PIXEL_SIZE,
                 driftSpeed: (Math.random() - 0.5) * 0.4,
-                windSensitivity: Math.random() // 0 = unaffected, 1 = moves
+                windSensitivity: Math.random()
             });
-        }
     }
+}
 
     function drawPixelatedSnow() {
         if (!canvas.getContext) return;
