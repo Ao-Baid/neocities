@@ -18,9 +18,38 @@
 
     let mouseInside = true;
 
-    function resizeCanvas(){
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    let viewportWidth = 0;
+    let viewportHeight = 0;
+
+    function getViewportSize() {
+        const vv = window.visualViewport;
+        if (vv) {
+            return { width: vv.width, height: vv.height };
+        }
+        return { width: window.innerWidth, height: window.innerHeight };
+    }
+
+    function resizeCanvas() {
+        const { width, height } = getViewportSize();
+        const dpr = window.devicePixelRatio || 1;
+        const ctx = canvas.getContext('2d');
+
+        viewportWidth = width;
+        viewportHeight = height;
+
+        // CSS display size = visible viewport
+        canvas.style.width  = `${width}px`;
+        canvas.style.height = `${height}px`;
+
+        // Canvas buffer = visible viewport × device pixel ratio
+        canvas.width  = Math.round(width  * dpr);
+        canvas.height = Math.round(height * dpr);
+
+        // Drawing stays in CSS pixels (no stretching on Retina)
+        if (ctx) {
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.imageSmoothingEnabled = false;
+        }
     }
 
     function initSnow() {
@@ -65,7 +94,7 @@
                 s.y = -s.size;
                 s.x = Math.random() * canvas.width;
             }
-            if (s.y > canvas.width + s.size){
+            if (s.x > canvas.width + s.size){
                 s.x = -s.size;
             } else if (s.x < -s.size){
                 s.x = canvas.width + s.size;
